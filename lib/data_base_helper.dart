@@ -25,12 +25,12 @@ class DBManager {
       join(dbPath, 'db_Manager.db'),
       onCreate: (db, version) {
         db.execute(
-            'CREATE TABLE IF NOT EXISTS $tableName(id integer primary key autoincrement,'
-                ' Reminder_Name TEXT,'
-                ' Simi_Reminders TEXT,'
-                ' Reminder_Date TEXT,'
-                ' Reminder_Type TEXT,'
-                ' Reminder_Completed INTEGER)'
+            // 'CREATE TABLE IF NOT EXISTS $tableName(id integer primary key autoincrement,'
+            //     ' Reminder_Name TEXT,'
+            //     ' Simi_Reminders TEXT,'
+            //     ' Reminder_Date TEXT,'
+            //     ' Reminder_Type TEXT,'
+            //     ' Reminder_Completed INTEGER)'
 
                 'CREATE TABLE IF NOT EXISTS $Person(id integer primary key autoincrement,'
                 'ID INT,'
@@ -51,8 +51,8 @@ class DBManager {
                 ' clinic_working_Hour  Double )'
 
                 'CREATE TABLE IF NOT EXISTS $Patient(id integer primary key autoincrement,'
-                'Height Double'
-                'Wight  Double'
+                'height Double'
+                'Weight  Double'
                 'Diseases TEXT)'
 
                 'CREATE TABLE IF NOT EXISTS $Medicine(id integer primary key autoincrement,'
@@ -113,17 +113,30 @@ class DBManager {
     );
   }
 
+  // static Future addReminder(Map<String, Object> data) async {
+  //   final db = await DBManager.database();
+  //   return db.insert(tableName, data,
+  //       conflictAlgorithm: ConflictAlgorithm.replace);
+  // }
+  //
+  // static Future<List<Map<String, dynamic>>> loadReminders() async {
+  //   final data = await DBManager.database();
+  //   var result = await data.query(tableName);
+  //   return result;
+  // }
+
   static Future addReminder(Map<String, Object> data) async {
     final db = await DBManager.database();
-    return db.insert(tableName, data,
+    return db.insert(Patient, data,
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   static Future<List<Map<String, dynamic>>> loadReminders() async {
     final data = await DBManager.database();
-    var result = await data.query(tableName);
+    var result = await data.query(Patient);
     return result;
   }
+
 
   static Future<void> deleteReminder(
       String table,

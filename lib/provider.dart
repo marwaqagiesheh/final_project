@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medical_care_project/models/Patient.dart';
 import 'package:medical_care_project/models/reminder.dart';
 import '/data_base_helper.dart';
 import '../models/types.dart';
@@ -59,6 +60,37 @@ class ReminderProvider with ChangeNotifier {
 
     notifyListeners();
   }
+/////////////////////////////////////////
+  // Future addreminder(Reminder reminder) async {
+  //   await DBManager.addReminder({
+  //     'Reminder_Name': reminder.reminderName!,
+  //     'Reminder_Date': reminder.reminderDate!,
+  //     'Reminder_Completed': reminder.reminderCompleted == false ? 0 : 1,
+  //     'Reminder_Type': reminder.remindertype!,
+  //     'Simi_Reminders': reminder.simiReminders!
+  //   });
+  //
+  //   notifyListeners();
+  // }
+  //
+  // Future<void> loadReminders() async {
+  //   final dataList = await DBManager.loadReminders();
+  //
+  //   Patient = dataList
+  //       .map((data) => Patient(
+  //       // id: data['id'],
+  //       height: data['height'],
+  //       Weight: data['Weight'],
+  //       // reminderCompleted: data['Reminder_Completed'] == 0 ? false : true,
+  //       Diseases: data['Diseases'],
+  //
+  //   ))
+  //       .toList();
+  //
+  //   notifyListeners();
+  // }
+
+////////////////////
 
   Future<void> changereminderState(id, bool reminderCompleted) async {
     reminderCompleted = !reminderCompleted;
